@@ -56,10 +56,30 @@ Rather than hide this, it's the headline finding of the confusion matrix.
 ## App
 
 `app.py` (Streamlit) — upload a photo or use the webcam. A Haar-cascade face
-detector (bundled with OpenCV) crops the face to 48×48, and the app shows a
-**confidence bar for all 7 classes**, not just the top-1 label. A live-webcam
-mode averages predictions over the last 10 frames to smooth flicker instead
-of showing noisy per-frame flips.
+detector (bundled separately as `models/haarcascade_frontalface_default.xml`,
+since opencv-python 5.x no longer ships cascade files in `cv2.data`) crops the
+face to 48×48, and the app shows a **confidence bar for all 7 classes**, not
+just the top-1 label. A live-webcam mode averages predictions over the last
+10 frames to smooth flicker instead of showing noisy per-frame flips.
+
+## Screenshots
+
+App landing state:
+
+![App landing](docs/screenshots/01_landing.png)
+
+Uploaded photo → detected face → confidence bar for all 7 classes, sorted by
+probability (this example: neutral 54.9%, happy 30.0%):
+
+![Prediction](docs/screenshots/02_prediction.png)
+
+Webcam-snapshot mode (camera permission prompt shown, no capture required):
+
+![Webcam mode](docs/screenshots/03_webcam_mode.png)
+
+Live-webcam mode with rolling-average smoothing:
+
+![Live mode](docs/screenshots/04_live_mode.png)
 
 ## Reproduce
 
